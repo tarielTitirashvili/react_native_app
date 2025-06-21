@@ -1,29 +1,38 @@
-import { StyleSheet, Text, Button, View } from 'react-native'
+import { useState } from 'react'
+import { StyleSheet, Text, Button, View, TextInput } from 'react-native'
 
 export default function App() {
+  const [value, setValue] = useState()
+  const handleChangeText = (text)=>{setValue(text)}
   return (
-    <View style={styles.container}>
-      <Button style={styles.button} title='tariel 1' />
-      <Text style={styles.text}>Hello World!! from Tariel!</Text>
+    <View style={styles.appContainer} >
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.inputStyles} placeholder='To Do' onChangeText={handleChangeText} value={value} />
+        <Button color="purple" title='Add To Do' />
+      </View>
+      <View></View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    gap: 12,
-    backgroundColor: 'black',
-    color: 'purple !important',
-    alignItems: 'center',
-    justifyContent: 'center',
+  appContainer: {
+    backgroundColor: '#fff',
+    padding: 50,
+    paddingHorizontal: 16
   },
-  text: {
-    borderWidth: 3,
-    borderColor: '#fff',
-    color: 'purple',
-    padding: 16,
-    alignItems: 'center',
+  inputContainer:{
+    paddingTop: 24,
+    flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8
   },
+  inputStyles:{
+    padding: 8,
+    borderWidth: 1,
+    borderBlockColor: 'purple',
+    width: '70%',
+    borderRadius: 6
+  }
 })
