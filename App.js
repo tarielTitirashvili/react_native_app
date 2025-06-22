@@ -33,7 +33,7 @@ export default function App() {
             itemData => {
             return<View style={styles.listsTextContainer} >
               <Text style={styles.listsText} >
-                {itemData.item}
+                {itemData.item.value}
               </Text>
             </View>
           }}
