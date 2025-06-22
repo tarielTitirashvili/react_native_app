@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { StyleSheet, Text, Button, View, TextInput } from 'react-native'
+import { StyleSheet, Text, Button, View, TextInput, FlatList } from 'react-native'
 
 export default function App() {
   const [value, setValue] = useState('')
@@ -9,7 +9,7 @@ export default function App() {
 
   const handleButtonClick = () => {
     if (value.length) {
-      setTodos([...todos, value])
+      setTodos(prev => [...prev, {value, id: (Math.random()*Math.random()).toString() }])
       setValue('')
     }
   }
@@ -24,9 +24,24 @@ export default function App() {
         <Text style={styles.listsTitle}>
           List Of To Does
         </Text>
-        {
-          todos.map((todo, index) => (<Text style={styles.listsTitle} key={index} >{todo}</Text>))
-        }
+        <FlatList
+          data={todos}
+          keyExtractor={(item, index)=>{ // by default it looks for key property in object here we are telling to look for id property
+            return item.id
+          }}
+          renderItem={
+            itemData => {
+            return<View style={styles.listsTextContainer} >
+              <Text style={styles.listsText} >
+                {itemData.item}
+              </Text>
+            </View>
+          }}
+          alwaysBounceVertical={false}
+          style={styles.scrollStyles}
+        />
+
+
       </View>
     </View>
   )
@@ -64,6 +79,21 @@ const styles = StyleSheet.create({
     flex: 11
   },
   listsTitle: {
-    color: 'skyblue'
+    padding: 8,
+    paddingHorizontal: 0,
+    color: 'purple',
+    fontSize: 18
+  },
+  listsText: {
+    color: 'skyblue',
+  },
+  listsTextContainer: {
+    backgroundColor: 'purple',
+    padding: 12,
+    borderRadius: 8,
+    marginBottom: 4
+  },
+  scrollStyles: {
+
   }
 })
