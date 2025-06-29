@@ -1,12 +1,18 @@
-import { StyleSheet, Text, View, } from 'react-native'
+import { Pressable, StyleSheet, Text, View, } from 'react-native'
 
-const TodoItem = ({text}) => {
+const TodoItem = (props) => {
+  const { text, onPress, id } = props
+
+  const handlePress = () => onPress(id)
+
   return (
-    <View style={styles.listsTextContainer} >
-      <Text style={styles.listsText} >
-        {text}
-      </Text>
-    </View>
+    <Pressable onPress={handlePress}>
+      <View style={styles.listsTextContainer} >
+        <Text style={styles.listsText} >
+          {text}
+        </Text>
+      </View>
+    </Pressable>
   )
 }
 
