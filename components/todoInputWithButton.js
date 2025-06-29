@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { StyleSheet, Button, View, TextInput, Modal } from 'react-native'
 
 const TodoInputWithButton = (props) => {
-  const { handleButtonPress } = props
+  const { handleButtonPress, visible } = props
 
   const [value, setValue] = useState('')
 
@@ -14,7 +14,7 @@ const TodoInputWithButton = (props) => {
   }
 
   return (
-    <Modal>
+    <Modal visible={visible} animationType='fade'>
       <View style={styles.inputContainer}>
         <TextInput placeholderTextColor='gray' style={styles.inputStyles} placeholder='To Do' onChangeText={handleChangeText} value={value} />
         <Button onPress={handleButtonPressLocale} color="purple" title='Add To Do' />

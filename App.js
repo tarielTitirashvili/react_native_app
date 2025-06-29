@@ -15,7 +15,7 @@ export default function App() {
     }
   }
   function handleDeleteToDo(id) {
-    setTodos(prevTodos=> prevTodos.filter(todo=> todo.id !== id))
+    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id))
   }
 
   function handleOpenModal() {
@@ -24,10 +24,8 @@ export default function App() {
 
   return (
     <View style={styles.appContainer} >
-      <Button title='Add Todo' onPress={handleOpenModal} />
-      {
-        addTodoModalOpen && <TodoInputWithButton handleButtonPress={handleButtonPress} />
-      }
+      <Button title='Add Todo' color="purple" onPress={handleOpenModal} />
+      <TodoInputWithButton visible={addTodoModalOpen} handleButtonPress={handleButtonPress} />
       <View style={styles.goalsContainer}>
         <Text style={styles.listsTitle}>
           List Of To Does
