@@ -1,23 +1,25 @@
-import {useState} from 'react'
-import { StyleSheet, Button, View, TextInput } from 'react-native'
+import { useState } from 'react'
+import { StyleSheet, Button, View, TextInput, Modal } from 'react-native'
 
 const TodoInputWithButton = (props) => {
   const { handleButtonPress } = props
 
   const [value, setValue] = useState('')
-  
+
   const handleChangeText = (text) => setValue(text)
-  
-  const handleButtonPressLocale = () =>{
+
+  const handleButtonPressLocale = () => {
     handleButtonPress(value)
     setValue('')
   }
-  
+
   return (
-    <View style={styles.inputContainer}>
-      <TextInput placeholderTextColor='gray' style={styles.inputStyles} placeholder='To Do' onChangeText={handleChangeText} value={value} />
-      <Button onPress={handleButtonPressLocale} color="purple" title='Add To Do' />
-    </View>
+    <Modal>
+      <View style={styles.inputContainer}>
+        <TextInput placeholderTextColor='gray' style={styles.inputStyles} placeholder='To Do' onChangeText={handleChangeText} value={value} />
+        <Button onPress={handleButtonPressLocale} color="purple" title='Add To Do' />
+      </View>
+    </Modal>
   )
 }
 
@@ -25,6 +27,7 @@ export default TodoInputWithButton
 
 const styles = StyleSheet.create({
   inputContainer: {
+    backgroundColor: 'black',
     flex: 1,
     paddingTop: 24,
     flexDirection: 'row',

@@ -1,23 +1,33 @@
 import { useState } from 'react'
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Button } from 'react-native'
 import TodoItem from './components/todoItem'
 import TodoInputWithButton from './components/todoInputWithButton'
 
 export default function App() {
   const [todos, setTodos] = useState([])
 
+  const [addTodoModalOpen, setAddTodoModalOpen] = useState(false)
+
   const handleButtonPress = (value) => {
     if (value.length) {
       setTodos(prev => [...prev, { value, id: (Math.random() * Math.random()).toString() }])
+      setAddTodoModalOpen(false)
     }
   }
   function handleDeleteToDo(id) {
     setTodos(prevTodos=> prevTodos.filter(todo=> todo.id !== id))
   }
 
+  function handleOpenModal() {
+    setAddTodoModalOpen(true)
+  }
+
   return (
     <View style={styles.appContainer} >
-      <TodoInputWithButton handleButtonPress={handleButtonPress} />
+      <Button title='Add Todo' onPress={handleOpenModal} />
+      {
+        addTodoModalOpen && <TodoInputWithButton handleButtonPress={handleButtonPress} />
+      }
       <View style={styles.goalsContainer}>
         <Text style={styles.listsTitle}>
           List Of To Does
