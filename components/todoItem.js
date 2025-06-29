@@ -6,6 +6,7 @@ const TodoItem = (props) => {
   const handlePress = () => onPress(id)
 
   return (
+    // pressable is required component if we want to make some parts of app clickable there are also variations of touchable but they will be deprecated in future
     <Pressable onPress={handlePress}>
       <View style={styles.listsTextContainer} >
         <Text style={styles.listsText} >
